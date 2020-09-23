@@ -1,0 +1,45 @@
+import React from "react";
+import "./App.css";
+
+type Pokemon = {
+  id: number;
+  name: {
+    english: string;
+  };
+  types: string[];
+};
+
+type PokemonListProps = { pokemon: Pokemon[] };
+
+const PokemonList: React.FC<PokemonListProps> = ({ pokemon }) => (
+  <table>
+    <tbody>
+      {pokemon.map((p) => (
+        <tr key={p.id}>
+          <td>{p.name.english}</td>
+          <td>{p.types.join(", ")}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+const pokemon = [
+  {
+    id: 1,
+    name: {
+      english: "Bulbasaur",
+    },
+    types: ["Grass", "Poison"],
+  },
+];
+
+function App() {
+  return (
+    <div className="App">
+      <PokemonList pokemon={pokemon} />
+    </div>
+  );
+}
+
+export default App;
